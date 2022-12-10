@@ -14,5 +14,7 @@ class UploadMoodCaptureUseCase(UseCase):
     def __init__(self, repository: UploadMoodCaptureRepository) -> None:
         self._repository = repository
 
-    async def __call__(self, input_use_case: UploadMoodCaptureInputPort) -> UploadMoodCaptureOutputPort:
+    async def __call__(
+        self, input_use_case: UploadMoodCaptureInputPort
+    ) -> UploadMoodCaptureOutputPort:
         return await self._repository.upload_mood_capture(input_port=input_use_case)

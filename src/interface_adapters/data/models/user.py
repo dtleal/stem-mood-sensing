@@ -16,9 +16,7 @@ class UserModel(Model):
     user_name = Column(String)
 
     @classmethod
-    async def find_by_name(
-        cls, session: AsyncSession, user_name: str
-    ) -> int:
+    async def find_by_name(cls, session: AsyncSession, user_name: str) -> int:
         """Find by its id."""
         query: Select = select(cls).filter(cls.user_name == user_name)
         result: Result = await session.execute(query)
