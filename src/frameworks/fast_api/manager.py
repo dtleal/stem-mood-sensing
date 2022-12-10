@@ -5,6 +5,10 @@ from fastapi import APIRouter, FastAPI
 
 from interface_adapters.routes.health_check import system_state_router
 from interface_adapters.routes.v1.upload_mood_capture import upload_mood_capture_route
+from interface_adapters.routes.v1.user_mood_sensing import (
+    happy_location_route,
+    mood_frequency_route,
+)
 
 logging.basicConfig(
     stream=sys.stdout,
@@ -33,7 +37,9 @@ class FastApiManager:
         self._logger.info("Adding routes...")
         api_router = APIRouter()
         api_router.include_router(system_state_router, prefix="/v1", tags=["System State"])
-        api_router.include_router(upload_mood_capture_route, prefix="/v1", tags=["Example"])
+        api_router.include_router(upload_mood_capture_route, prefix="/v1", tags=["Post"])
+        api_router.include_router(mood_frequency_route, prefix="/v1", tags=["Get"])
+        api_router.include_router(happy_location_route, prefix="/v1", tags=["Get"])
         self._app.include_router(api_router)
 
     def get_instance(self) -> FastAPI:
