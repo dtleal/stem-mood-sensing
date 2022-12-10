@@ -11,7 +11,9 @@ mood_frequency_route = APIRouter()
 happy_location_route = APIRouter()
 
 
-@mood_frequency_route.get("/mood/frequency/{user_name}", response_model=MoodFrequencyOutputDTO)
+@mood_frequency_route.get(
+    "/mood/frequency/{user_name}", response_model=MoodFrequencyOutputDTO
+)
 @inject
 async def mood_frequency(
     user_name: str,
@@ -23,14 +25,14 @@ async def mood_frequency(
     try:
         output_use_case = await use_case(user_name=user_name)
 
-        return MoodFrequencyOutputDTO(
-            result=output_use_case.result
-        )
+        return MoodFrequencyOutputDTO(result=output_use_case.result)
     except Exception as error:
         return {"error": f"{error}"}
 
 
-@happy_location_route.get("/happy/location/{user_name}", response_model=HappyLocationOutputDTO)
+@happy_location_route.get(
+    "/happy/location/{user_name}", response_model=HappyLocationOutputDTO
+)
 @inject
 async def happy_location(
     user_name: str,

@@ -11,7 +11,9 @@ from interface_adapters.dtos.upload_mood_capture import (
 upload_mood_capture_route = APIRouter()
 
 
-@upload_mood_capture_route.post("/mood/upload/", response_model=UploadMoodCaptureOutputDTO)
+@upload_mood_capture_route.post(
+    "/mood/upload/", response_model=UploadMoodCaptureOutputDTO
+)
 @inject
 async def upload_mood_capture(
     input_dto: UploadMoodCaptureInputDTO,
@@ -26,12 +28,12 @@ async def upload_mood_capture(
             mood=input_dto.mood,
             location=input_dto.location,
         )
-        
+
         output_use_case = await use_case(input_use_case=input_use_case)
 
         return UploadMoodCaptureOutputDTO(
             user_id=output_use_case.user_id,
-            user_name=output_use_case.user_name,  
+            user_name=output_use_case.user_name,
             mood=output_use_case.mood,
             location=output_use_case.location,
         )

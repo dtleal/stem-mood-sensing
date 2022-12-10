@@ -7,8 +7,8 @@ from sqlalchemy import Column, Enum, ForeignKey, Integer, String, text
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from domain.ports.mood_frequency import MoodFrequencyOutputPort
 from domain.ports.happy_location import HappyLocationOutputPort
+from domain.ports.mood_frequency import MoodFrequencyOutputPort
 from interface_adapters.data.models.base import Model
 
 
@@ -34,9 +34,7 @@ class MoodModel(Model):
 
     @classmethod
     async def get_mood_frequency(
-        cls,
-        session: AsyncSession,
-        user_id: int
+        cls, session: AsyncSession, user_id: int
     ) -> MoodFrequencyOutputPort:
         """Get most selled piza."""
         try:
@@ -47,18 +45,14 @@ class MoodModel(Model):
             )
             resultset: Result = await session.execute(query)
             result = resultset.fetchall()
-            print('resultado: ', result)
-            return MoodFrequencyOutputPort(
-                result=result
-            )
+            print("resultado: ", result)
+            return MoodFrequencyOutputPort(result=result)
         except Exception as e:
             print("Error: ", e)
 
     @classmethod
     async def get_happy_location(
-        cls,
-        session: AsyncSession,
-        user_id: int
+        cls, session: AsyncSession, user_id: int
     ) -> HappyLocationOutputPort:
         """Get most selled piza."""
         try:

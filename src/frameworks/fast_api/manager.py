@@ -36,8 +36,12 @@ class FastApiManager:
         """Fast API routes"""
         self._logger.info("Adding routes...")
         api_router = APIRouter()
-        api_router.include_router(system_state_router, prefix="/v1", tags=["System State"])
-        api_router.include_router(upload_mood_capture_route, prefix="/v1", tags=["Post"])
+        api_router.include_router(
+            system_state_router, prefix="/v1", tags=["System State"]
+        )
+        api_router.include_router(
+            upload_mood_capture_route, prefix="/v1", tags=["Post"]
+        )
         api_router.include_router(mood_frequency_route, prefix="/v1", tags=["Get"])
         api_router.include_router(happy_location_route, prefix="/v1", tags=["Get"])
         self._app.include_router(api_router)
