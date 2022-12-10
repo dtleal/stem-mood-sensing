@@ -19,7 +19,7 @@ class FrameworkContainer(containers.DeclarativeContainer):
             "interface_adapters.routes.health_check",
             "interface_adapters.routes.v1.upload_mood_capture",
             "interface_adapters.routes.v1.user_mood_sensing",
-            "main"
+            "main",
         ],
     )
 
@@ -37,8 +37,8 @@ class FrameworkContainer(containers.DeclarativeContainer):
     happy_location_repository: HappyLocationRepository = providers.Factory(
         HappyLocationRepository, database_service=database_manager
     )
-    
-    #use cases
+
+    # use cases
     upload_mood_capture_use_case: UploadMoodCaptureUseCase = providers.Factory(
         UploadMoodCaptureUseCase, repository=upload_mood_capture_repository
     )
@@ -46,7 +46,7 @@ class FrameworkContainer(containers.DeclarativeContainer):
     mood_frequency_use_case: MoodFrequencyUseCase = providers.Factory(
         MoodFrequencyUseCase, repository=mod_frequency_repository
     )
-    
+
     happy_location_use_case: HappyLocationUseCase = providers.Factory(
         HappyLocationUseCase, repository=happy_location_repository
     )
