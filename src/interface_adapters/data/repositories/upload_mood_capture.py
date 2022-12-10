@@ -1,4 +1,3 @@
-from sqlalchemy.exc import DatabaseError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from domain.ports.upload_mood_capture import (
